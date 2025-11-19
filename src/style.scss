@@ -1,0 +1,242 @@
+@use 'colors.scss' as *;
+@use '_responsive.scss' as r;
+
+// Update the import directory to point to it‘s location within node_modules
+$bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
+
+// Import the Sass files as usual
+@import "bootstrap-icons/font/bootstrap-icons";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e4/StarfieldSimulation.gif');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50%;
+    color: $green;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    @include r.breakpoint(tablet) {
+        padding: 0 100px;
+        padding-top: 30px;
+    }
+    @include r.breakpoint(desktop) {
+        padding: 0 250px;
+        padding-top: 30px;
+    }
+}
+
+#title {
+    text-align: center;
+    font-size: 24px;
+    border: 3px solid $pink;
+    border-radius: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    background-color: rgba($color: $dark-purple, $alpha: 0.5);
+}
+
+#search {
+    position: relative;
+    margin-bottom: 20px;
+    &__icon {
+        position: absolute;
+        top: 5px;
+        left: 7px;
+        color: $green;
+    }
+    &__bar {
+        color: $green;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        border: 3px solid $pink;
+        border-radius: 20px;
+        background-color: rgba($color: $dark-purple, $alpha: 0.5);
+        width: 100%;
+        padding-left: 25px;
+        margin-bottom: 10px;
+    }
+    select {
+        font-size: 14px;
+        color: $green;
+        background-color: rgba($color: $dark-purple, $alpha: 0.5);
+        border-color: $pink;
+        border-radius: 10px;
+        option {
+            font-size: 14px;
+            color: $green;
+            background-color: $dark-purple;
+        }
+    }
+}
+
+#characters {
+    @include r.breakpoint(tablet) {
+        padding-bottom: 20px;
+    }
+    &__title {
+        text-align: center;
+        font-size: 18px;
+        border: 3px solid $pink;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        background-color: rgba($color: $dark-purple, $alpha: 0.5);
+    }
+    &__spinner {
+        width: 5rem;
+        height: 5rem;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        @include r.breakpoint(tablet) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        @include r.breakpoint(desktop) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+    &__load_more {
+        display: none;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba($color: $dark-purple, $alpha: 0.5);
+        color: $green;
+        border-radius: 10px;
+        border-color: $pink;
+        &:hover {
+            background-color: $pink;
+            color: $dark-purple;
+        }
+    }
+    &__error {
+        display: none;
+        text-align: center;
+        font-size: large;
+    }
+}
+
+.character {
+    border: 3px solid $pink;
+    border-radius: 20px;
+    background-color: rgba($color: $dark-purple, $alpha: 0.5);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    &__img {
+        max-width: 50%;
+        @include r.breakpoint(tablet) {
+            max-width: 40%;
+        }
+    }
+    &__data {
+        flex: 1;
+        *::before {
+            content: "-";
+        } 
+        p {
+            margin: 0;
+        }
+    }
+}
+
+#popup {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        background-color: rgba($color: #000000, $alpha: 0.8);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    &__spinner {
+        position: absolute;
+        width: 5rem;
+        height: 5rem;
+        display: block;
+        top: calc(50% - 2.5rem);
+        left: calc(50% - 2.5rem);
+        z-index: 5;
+    }
+    &__container {
+        position: relative;
+        margin: 20px;
+        border: 3px solid $pink;
+        border-radius: 20px;
+        background-color: rgba($color: $dark-purple, $alpha: 0.5);
+        z-index: 2;
+        text-align: center;   
+        padding: 20px;
+        @include r.breakpoint(tablet) {
+            margin: 30px 100px;
+        }
+        @include r.breakpoint(desktop) {
+            max-width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        &__wrapper {
+            @include r.breakpoint(tablet) {
+                display: flex;
+                justify-content: center;
+                gap: 50px;
+                padding: 20px;
+            }
+        }
+        &__close {
+            color: $green;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 3;
+            @include r.breakpoint(tablet) {
+                right: 10px;
+            }
+        }
+        &__title {
+            margin-top: 5px;
+        }
+        &__img {
+            max-width: 50%;
+            border-radius: 20px;
+            @include r.breakpoint(tablet) {
+                max-width: 40%;
+            }
+        }
+        &__data {
+            margin-top: 5px;
+            @include r.breakpoint(tablet) {
+                margin: 0;
+                align-content: center;
+            }
+            *::before {
+                content: "-";
+            } 
+            p {
+                text-align: start;
+                margin: 0;
+            }
+        }
+    }
+}

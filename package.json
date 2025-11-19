@@ -1,0 +1,22 @@
+{
+  "name": "rick-and-morty-explorer",
+  "homepage": "https://guillermo-ramirez-jimenez.github.io/rick-and-morty-explorer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "sass": "^1.93.2",
+    "vite": "^7.1.2"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.13.1"
+  }
+}
